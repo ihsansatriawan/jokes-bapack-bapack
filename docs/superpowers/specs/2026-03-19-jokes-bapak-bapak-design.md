@@ -84,12 +84,13 @@ Bapak-bapak Indonesia yang mau nyari jokes buat dilontarin ke keluarga saat kump
 
 **Hand-Drawn / Sketchy style** — organic, playful, imperfect.
 
-### Key Design Tokens
-- **Background**: `#fdfbf7` (warm paper) with dot-grid texture
-- **Foreground**: `#2d2d2d` (pencil black, never pure black)
-- **Accent**: `#ff4d4d` (red correction marker)
-- **Secondary**: `#2d5da1` (blue ballpoint pen)
-- **Muted**: `#e5e0d8` (old paper)
+### Key Design Tokens (Tailwind Config Keys)
+- **`paper`**: `#fdfbf7` (warm paper background) with dot-grid texture
+- **`pencil`**: `#2d2d2d` (pencil black, never pure black)
+- **`accent`**: `#ff4d4d` (red correction marker)
+- **`ink`**: `#2d5da1` (blue ballpoint pen)
+- **`muted`**: `#e5e0d8` (old paper / erased pencil)
+- **`postit`**: `#fff9c4` (post-it yellow, active state)
 
 ### Visual Characteristics
 - **Wobbly borders**: Irregular `border-radius` values (e.g., `255px 15px 225px 15px / 15px 225px 15px 255px`)
@@ -102,7 +103,7 @@ Bapak-bapak Indonesia yang mau nyari jokes buat dilontarin ke keluarga saat kump
 ### Component Styles
 - **Chips (categories)**: Wobbly pill shape, white bg, 2px border, post-it yellow when active
 - **Input**: Full box with wobbly border, Patrick Hand font
-- **Generate button**: Red accent bg, 3px border, hard shadow, "press flat" on click
+- **Generate button**: Red accent bg, 3px border, hard shadow, press flat on click (`translate-x-[4px] translate-y-[4px] shadow-none`)
 - **Joke cards**: White bg, wobbly border, thumbtack pin, slight rotation alternating
 - **Action buttons**: Copy (muted bg → blue hover), Share WA (white bg → red hover)
 
@@ -136,15 +137,32 @@ Bapak-bapak Indonesia yang mau nyari jokes buat dilontarin ke keluarga saat kump
 }
 ```
 
-### AI Prompt Strategy
+### HTTP Status Codes
+- `200` — success, jokes returned
+- `400` — invalid input (e.g., keyword too long, invalid category)
+- `500` — OpenRouter API failure or timeout
 
-System prompt instructs the model to:
-- Generate 3-5 dad jokes in Indonesian (Bahasa Indonesia casual/informal)
-- Style: receh, pun-based, family-friendly, bapak-bapak humor
-- Format: return as JSON array of strings
-- If category provided, jokes relate to that theme
-- If keyword provided, jokes incorporate that word/concept
-- If neither, generate random mixed-theme jokes
+### OpenRouter Config
+- **Default model**: `meta-llama/llama-3.1-8b-instruct:free` (free tier, good enough for jokes)
+- **Fetch timeout**: 15 seconds (Vercel serverless limit-friendly)
+- **Joke count validation**: Client accepts whatever the model returns (no strict enforcement). Prompt asks for 5 jokes.
+
+### AI Prompt Template
+
+```
+System: Kamu adalah generator jokes bapak-bapak Indonesia. Buat jokes yang receh,
+berbasis pun/permainan kata, family-friendly, dan khas humor bapak-bapak.
+
+Balas HANYA dengan JSON array berisi 5 string jokes. Tidak ada teks lain.
+Contoh format: ["joke 1", "joke 2", "joke 3", "joke 4", "joke 5"]
+
+User: Buatkan 5 jokes bapak-bapak {kategoriClause} {keywordClause}
+```
+
+Where:
+- `{kategoriClause}` = `tentang {category}` if provided, else empty
+- `{keywordClause}` = `yang berhubungan dengan "{keyword}"` if provided, else empty
+- If neither provided: `tentang topik apa saja`
 
 ## File Structure
 
@@ -153,7 +171,7 @@ surat/
 ├── src/
 │   ├── app/
 │   │   ├── layout.tsx          # Root layout, fonts, metadata
-│   │   ├── page.tsx            # Homepage (single page app)
+│   │   ├── page.tsx            # Homepage — orchestrates all state (selected category, keyword, jokes[], loading, error)
 │   │   ├── globals.css         # Tailwind + hand-drawn custom styles
 │   │   └── api/
 │   │       └── generate/
@@ -163,8 +181,7 @@ surat/
 │   │   ├── CategoryChips.tsx   # Category selection chips
 │   │   ├── KeywordInput.tsx    # Free text keyword input
 │   │   ├── GenerateButton.tsx  # Generate button with loading state
-│   │   ├── JokeCard.tsx        # Individual joke display with actions
-│   │   └── JokeList.tsx        # List of joke cards
+│   │   └── JokeCard.tsx        # Individual joke display with copy/share actions
 │   └── lib/
 │       ├── openrouter.ts       # OpenRouter API client
 │       └── constants.ts        # Categories, prompts, config
@@ -191,7 +208,7 @@ surat/
 - "Waduh, jokes-nya lagi ngadat. Coba lagi ya, Pak!"
 
 ### Share Behavior
-- **Copy**: Use `navigator.clipboard.writeText()`, show brief "Copied!" feedback
+- **Copy**: Use `navigator.clipboard.writeText()`, show "Tersalin!" feedback for 2 seconds
 - **WhatsApp**: Use `navigator.share()` if available (mobile), fallback to `https://wa.me/?text={encodedJoke}`
 
 ## Out of Scope (MVP)

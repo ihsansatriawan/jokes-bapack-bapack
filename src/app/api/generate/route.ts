@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { generateJokes } from "@/lib/openrouter";
+import { getRandomJokes } from "@/lib/jokes";
 import { VALID_CATEGORY_IDS } from "@/lib/constants";
 
 export async function POST(request: NextRequest) {
@@ -23,7 +23,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const jokes = await generateJokes(category, keyword);
+    const jokes = getRandomJokes(category, keyword);
     return NextResponse.json({ jokes });
   } catch (error) {
     console.error("Generate jokes error:", error);

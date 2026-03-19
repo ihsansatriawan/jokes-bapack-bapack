@@ -11,11 +11,12 @@ const WOBBLY_VARIANTS = [
 ];
 
 interface JokeCardProps {
+  jokeId: number;
   joke: string;
   index: number;
 }
 
-export default function JokeCard({ joke, index }: JokeCardProps) {
+export default function JokeCard({ jokeId, joke, index }: JokeCardProps) {
   const [copied, setCopied] = useState(false);
 
   const rotation = index % 2 === 0 ? "-rotate-[0.5deg]" : "rotate-[0.5deg]";
@@ -27,12 +28,24 @@ export default function JokeCard({ joke, index }: JokeCardProps) {
       await navigator.clipboard.writeText(joke);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
+      if (typeof window !== "undefined" && window.umami) {
+        window.umami.track("copy-joke", {
+          joke_id: jokeId,
+          joke_text: joke.substring(0, 100),
+        });
+      }
     } catch {
       // clipboard unavailable in this browser/context — silently ignore
     }
   }
 
   function handleShareWA() {
+    if (typeof window !== "undefined" && window.umami) {
+      window.umami.track("share-whatsapp", {
+        joke_id: jokeId,
+        joke_text: joke.substring(0, 100),
+      });
+    }
     const text = encodeURIComponent(joke);
     // Try Web Share API first, fallback to wa.me
     if (navigator.share) {

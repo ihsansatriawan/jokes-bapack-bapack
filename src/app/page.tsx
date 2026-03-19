@@ -52,7 +52,7 @@ export default function Home() {
       >
         <Header />
         <CategoryChips selected={category} onSelect={setCategory} />
-        <GenerateButton onClick={handleGenerate} loading={loading} />
+        <GenerateButton onClick={() => handleGenerate()} loading={loading} />
         <div className="px-5 pb-4">
           <button
             type="button"

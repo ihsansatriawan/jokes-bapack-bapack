@@ -9,6 +9,7 @@ export default function GenerateButton({ onClick, loading }: GenerateButtonProps
   return (
     <div className="px-5 pt-1 pb-4">
       <button
+        type="button"
         onClick={onClick}
         disabled={loading}
         className="wobbly w-full border-[3px] border-pencil bg-accent px-4 py-3.5

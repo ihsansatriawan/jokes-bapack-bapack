@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Validate keyword if provided
-    if (keyword && (typeof keyword !== "string" || keyword.length > 100)) {
+    if (keyword !== undefined && (typeof keyword !== "string" || keyword.length > 100)) {
       return NextResponse.json(
         { error: "Kata kunci terlalu panjang (maks 100 karakter)." },
         { status: 400 }

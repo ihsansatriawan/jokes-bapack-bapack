@@ -65,7 +65,9 @@ export default function JokeCard({ joke, index }: JokeCardProps) {
 
       <div className="flex gap-2">
         <button
+          type="button"
           onClick={handleCopy}
+          aria-label={copied ? "Tersalin" : "Salin joke"}
           className="wobbly-3 flex-1 flex items-center justify-center gap-1.5 border-2 border-pencil
             bg-muted px-3 py-2 font-body text-sm text-pencil
             shadow-[2px_2px_0px_0px_rgba(45,45,45,0.15)]
@@ -85,6 +87,7 @@ export default function JokeCard({ joke, index }: JokeCardProps) {
           )}
         </button>
         <button
+          type="button"
           onClick={handleShareWA}
           className="wobbly flex-1 flex items-center justify-center gap-1.5 border-2 border-pencil
             bg-white px-3 py-2 font-body text-sm text-pencil

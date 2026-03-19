@@ -7,37 +7,51 @@ interface Joke {
   keywords: string[];
 }
 
-const allJokes: Joke[] = jokesData;
+export const allJokes: Joke[] = jokesData;
 
-function shuffleAndPick(jokes: Joke[], count: number): string[] {
-  const shuffled = [...jokes].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, count).map((j) => j.joke);
+/** Mulberry32 — simple 32-bit seeded PRNG */
+function mulberry32(seed: number): () => number {
+  let s = seed >>> 0;
+  return () => {
+    s = (s + 0x6d2b79f5) | 0;
+    let t = Math.imul(s ^ (s >>> 15), 1 | s);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
 }
 
-export function getRandomJokes(
-  category?: string,
-  keyword?: string,
-  count = 5
-): string[] {
-  let filtered = allJokes;
+/** Fisher-Yates shuffle using seeded PRNG */
+function seededShuffle<T>(array: T[], seed: number): T[] {
+  const shuffled = [...array];
+  const random = mulberry32(seed);
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+export interface JokeResult {
+  id: number;
+  joke: string;
+}
+
+export function getJokes(
+  category?: string | null,
+  count = 5,
+  seed: number = Date.now()
+): JokeResult[] {
+  let filtered: Joke[] = allJokes;
 
   if (category) {
-    filtered = filtered.filter((j) => j.category === category);
+    filtered = allJokes.filter((j) => j.category === category);
   }
 
-  if (keyword) {
-    const lower = keyword.toLowerCase();
-    filtered = filtered.filter(
-      (j) =>
-        j.joke.toLowerCase().includes(lower) ||
-        j.keywords.some((k) => k.toLowerCase().includes(lower))
-    );
-  }
-
+  // Fallback: if category has no jokes, use all
   if (filtered.length === 0) {
-    // Fallback: return random from all jokes if no match
-    return shuffleAndPick(allJokes, count);
+    filtered = allJokes;
   }
 
-  return shuffleAndPick(filtered, count);
+  const shuffled = seededShuffle(filtered, seed);
+  return shuffled.slice(0, count).map((j) => ({ id: j.id, joke: j.joke }));
 }

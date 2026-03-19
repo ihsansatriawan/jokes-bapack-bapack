@@ -25,7 +25,9 @@ Each time the user clicks "Generate", `Date.now()` is used as a seed for a deter
 - Each click produces a new seed (new millisecond) → new ordering
 - Two users clicking at the exact same millisecond would get the same result — acceptable given the low probability
 
-**Algorithm:** mulberry32 — a simple, fast, 32-bit seeded PRNG. No external dependencies.
+**Algorithm:** mulberry32 — a simple, fast, 32-bit seeded PRNG. No external dependencies. Since `Date.now()` returns a 53-bit number, truncate to 32 bits via `seed >>> 0` before passing to mulberry32.
+
+**Shuffle:** Use Fisher-Yates (Knuth) shuffle with the seeded PRNG — not `.sort(() => random() - 0.5)` which produces biased results.
 
 **Flow:**
 ```
@@ -39,16 +41,18 @@ User clicks Generate
 ### File Changes
 
 #### Modified: `src/lib/jokes.ts`
-- Remove server-oriented `getRandomJokes` export
-- Add `seededShuffle(array, seed)` — pure function using mulberry32 PRNG
-- Add `getJokes(category?, count?, seed?)` — filter by category + seeded shuffle, returns joke strings
+- Remove `getRandomJokes` (server-oriented, also had unused `keyword` param — keyword input was removed in earlier commit)
+- Add `mulberry32(seed)` — returns a seeded random number generator
+- Add `seededShuffle(array, seed)` — Fisher-Yates shuffle using mulberry32
+- Add `getJokes(category?, count=5, seed)` — filter by category + seeded shuffle, returns joke strings
+- Fallback: if category filter returns zero results, return jokes from all categories
 - Export jokes data and types for client use
 
 #### Modified: `src/app/page.tsx`
 - Remove `fetch('/api/generate')` call
 - Import `getJokes` directly from `lib/jokes.ts`
-- `handleGenerate` calls `getJokes(category, 5, Date.now())` synchronously
-- Remove loading state (`isLoading`) — interaction is now instant, no spinner needed
+- `handleGenerate` calls `getJokes(category, 5, Date.now())` synchronously — preserve `overrideCategory` parameter pattern
+- Remove `isLoading` and `error` states — interaction is now synchronous, cannot fail
 
 #### Deleted: `src/app/api/generate/route.ts`
 - No longer needed

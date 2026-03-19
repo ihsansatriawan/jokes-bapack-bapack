@@ -23,9 +23,13 @@ export default function JokeCard({ joke, index }: JokeCardProps) {
   const tackColor = index % 3 === 2 ? "bg-ink" : "bg-accent";
 
   async function handleCopy() {
-    await navigator.clipboard.writeText(joke);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(joke);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // clipboard unavailable in this browser/context — silently ignore
+    }
   }
 
   function handleShareWA() {

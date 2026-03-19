@@ -1,13 +1,6 @@
 import { CATEGORIES, type CategoryId } from "@/lib/constants";
 
-const WOBBLY_CLASSES = [
-  "wobbly",
-  "wobbly-2",
-  "wobbly-3",
-  "wobbly-4",
-  "wobbly",
-  "wobbly-2",
-];
+const WOBBLY_CLASSES = ["wobbly", "wobbly-2", "wobbly-3", "wobbly-4"];
 
 interface CategoryChipsProps {
   selected: CategoryId | null;
@@ -29,7 +22,7 @@ export default function CategoryChips({ selected, onSelect }: CategoryChipsProps
             key={cat.id}
             onClick={() => onSelect(selected === cat.id ? null : cat.id)}
             className={`
-              ${WOBBLY_CLASSES[i]}
+              ${WOBBLY_CLASSES[i % WOBBLY_CLASSES.length]}
               border-2 border-pencil px-3.5 py-1.5 font-body text-[15px] text-pencil
               shadow-[3px_3px_0px_0px_rgba(45,45,45,0.15)]
               transition-transform duration-100 cursor-pointer

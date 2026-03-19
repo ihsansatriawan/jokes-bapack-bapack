@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import CategoryChips from "@/components/CategoryChips";
 import GenerateButton from "@/components/GenerateButton";
 import JokeCard from "@/components/JokeCard";
+import EmptyState from "@/components/EmptyState";
 import type { CategoryId } from "@/lib/constants";
 
 export default function Home() {
@@ -46,32 +47,23 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex justify-center px-4 py-6 md:py-12">
+    <main className="min-h-screen flex flex-col justify-center items-center px-4 py-6 md:py-12">
       <div
         className="wobbly-md w-full max-w-md border-[3px] border-pencil bg-paper shadow-hard-lg overflow-hidden"
       >
         <Header />
-        <CategoryChips selected={category} onSelect={setCategory} />
-        <GenerateButton onClick={() => handleGenerate()} loading={loading} />
-        <div className="px-5 pb-4">
-          <button
-            type="button"
-            onClick={() => { setCategory(null); handleGenerate(null); }}
-            disabled={loading}
-            className="wobbly-2 w-full border-2 border-pencil bg-postit px-4 py-2.5
-              font-body text-base text-pencil
-              shadow-[3px_3px_0px_0px_rgba(45,45,45,0.15)] rotate-[-0.3deg]
-              transition-all duration-100 cursor-pointer
-              hover:translate-x-[1px] hover:translate-y-[1px] hover:rotate-[0.3deg] hover:shadow-[2px_2px_0px_0px_rgba(45,45,45,0.15)]
-              disabled:opacity-70 disabled:cursor-not-allowed"
-          >
-            ✨ Beri saya dad jokes terbaik hari ini!
-          </button>
+
+        <div className="animate-fade-in-up stagger-3">
+          <CategoryChips selected={category} onSelect={setCategory} />
+        </div>
+
+        <div className="animate-fade-in-up stagger-4">
+          <GenerateButton onClick={() => handleGenerate()} loading={loading} />
         </div>
 
         <hr className="mx-5 border-0 border-t-[3px] border-dashed border-muted" />
 
-        <div className="px-5 py-4">
+        <div className="px-5 py-4 animate-fade-in-up stagger-5">
           {error && (
             <div className="wobbly border-2 border-accent bg-accent/10 p-4 mb-3 font-body text-base text-pencil">
               {error}
@@ -92,13 +84,23 @@ export default function Home() {
             </>
           )}
 
-          {jokes.length === 0 && !error && !loading && (
-            <p className="font-body text-center text-pencil/40 py-8 text-lg">
-              Pilih kategori lalu pencet Generate, atau langsung minta jokes terbaik! ☝️
-            </p>
+          {jokes.length === 0 && !error && !loading && <EmptyState />}
+
+          {loading && (
+            <div className="py-10 text-center">
+              <div className="animate-wiggle inline-block text-4xl mb-3">🤔</div>
+              <p className="font-heading text-base text-pencil/50 -rotate-[0.5deg]">
+                Bapak lagi mikir...
+              </p>
+            </div>
           )}
         </div>
       </div>
+
+      {/* Footer */}
+      <p className="mt-4 font-body text-xs text-pencil/25 text-center animate-fade-in-up stagger-5">
+        dibuat dengan ❤️ untuk para bapak Indonesia
+      </p>
     </main>
   );
 }

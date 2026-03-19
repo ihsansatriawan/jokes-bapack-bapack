@@ -18,6 +18,7 @@ export default function Home() {
   async function handleGenerate() {
     setLoading(true);
     setError(null);
+    setJokes([]);
 
     try {
       const body: Record<string, string> = {};

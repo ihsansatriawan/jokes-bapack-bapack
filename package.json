@@ -1,5 +1,5 @@
 {
-  "name": "surat",
+  "name": "jokes-bapak-bapak",
   "version": "1.0.0",
   "main": "index.js",
   "directories": {
@@ -14,7 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
+  "description": "Generator jokes receh untuk para ayah Indonesia",
   "dependencies": {
     "lucide-react": "^0.577.0",
     "next": "^16.2.0",

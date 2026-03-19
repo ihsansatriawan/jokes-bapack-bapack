@@ -3,27 +3,26 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import CategoryChips from "@/components/CategoryChips";
-import KeywordInput from "@/components/KeywordInput";
 import GenerateButton from "@/components/GenerateButton";
 import JokeCard from "@/components/JokeCard";
 import type { CategoryId } from "@/lib/constants";
 
 export default function Home() {
   const [category, setCategory] = useState<CategoryId | null>(null);
-  const [keyword, setKeyword] = useState("");
   const [jokes, setJokes] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function handleGenerate() {
+  async function handleGenerate(overrideCategory?: CategoryId | null) {
     setLoading(true);
     setError(null);
     setJokes([]);
 
+    const effectiveCategory = overrideCategory !== undefined ? overrideCategory : category;
+
     try {
       const body: Record<string, string> = {};
-      if (category) body.category = category;
-      if (keyword.trim()) body.keyword = keyword.trim();
+      if (effectiveCategory) body.category = effectiveCategory;
 
       const res = await fetch("/api/generate", {
         method: "POST",
@@ -53,8 +52,22 @@ export default function Home() {
       >
         <Header />
         <CategoryChips selected={category} onSelect={setCategory} />
-        <KeywordInput value={keyword} onChange={setKeyword} />
         <GenerateButton onClick={handleGenerate} loading={loading} />
+        <div className="px-5 pb-4">
+          <button
+            type="button"
+            onClick={() => { setCategory(null); handleGenerate(null); }}
+            disabled={loading}
+            className="wobbly-2 w-full border-2 border-pencil bg-postit px-4 py-2.5
+              font-body text-base text-pencil
+              shadow-[3px_3px_0px_0px_rgba(45,45,45,0.15)] rotate-[-0.3deg]
+              transition-all duration-100 cursor-pointer
+              hover:translate-x-[1px] hover:translate-y-[1px] hover:rotate-[0.3deg] hover:shadow-[2px_2px_0px_0px_rgba(45,45,45,0.15)]
+              disabled:opacity-70 disabled:cursor-not-allowed"
+          >
+            ✨ Beri saya dad jokes terbaik hari ini!
+          </button>
+        </div>
 
         <hr className="mx-5 border-0 border-t-[3px] border-dashed border-muted" />
 
@@ -81,7 +94,7 @@ export default function Home() {
 
           {jokes.length === 0 && !error && !loading && (
             <p className="font-body text-center text-pencil/40 py-8 text-lg">
-              Pilih kategori atau ketik kata kunci, lalu pencet Generate! ☝️
+              Pilih kategori lalu pencet Generate, atau langsung minta jokes terbaik! ☝️
             </p>
           )}
         </div>

@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "joke": "Kenapa ayam nggak punya uang? Karena duitnya udah di-ceker-in.",
+    "category": "hewan",
+    "keywords": ["ayam", "uang", "ceker"]
+  },
+  {
+    "id": 2,
+    "joke": "Apa bedanya kucing sama kencing? Kalau kucing kakinya empat, kalau kencing kakinya satu.",
+    "category": "hewan",
+    "keywords": ["kucing", "kencing"]
+  },
+  {
+    "id": 3,
+    "joke": "Kenapa ikan lele nggak bisa main gitar? Karena kumisnya buat sensor, bukan buat gaya.",
+    "category": "hewan",
+    "keywords": ["ikan", "lele", "gitar"]
+  },
+  {
+    "id": 4,
+    "joke": "Apa persamaan semut dan gajah? Sama-sama nggak bisa masak nasi goreng.",
+    "category": "hewan",
+    "keywords": ["semut", "gajah", "nasi goreng"]
+  },
+  {
+    "id": 5,
+    "joke": "Kenapa sapi perah selalu tenang? Karena hidupnya udah ter-susu-n dengan baik.",
+    "category": "hewan",
+    "keywords": ["sapi", "susu"]
+  },
+  {
+    "id": 6,
+    "joke": "Nasi goreng kalau dikasih kecap jadi apa? Jadi nasi goreng kecap, masa jadi laptop.",
+    "category": "makanan",
+    "keywords": ["nasi goreng", "kecap"]
+  },
+  {
+    "id": 7,
+    "joke": "Kenapa tempe nggak pernah kesepian? Karena selalu ada kedelai yang menemani.",
+    "category": "makanan",
+    "keywords": ["tempe", "kedelai"]
+  },
+  {
+    "id": 8,
+    "joke": "Apa makanan favorit hantu? Mie ayam, karena bisa di-slurp tanpa kelihatan.",
+    "category": "makanan",
+    "keywords": ["mie", "hantu"]
+  },
+  {
+    "id": 9,
+    "joke": "Sayur apa yang paling ditakuti penjahat? Sayur bayam, karena bikin kuat kayak Popeye.",
+    "category": "makanan",
+    "keywords": ["sayur", "bayam", "popeye"]
+  },
+  {
+    "id": 10,
+    "joke": "Kenapa bakso selalu bulat? Karena kalau kotak namanya tahu.",
+    "category": "makanan",
+    "keywords": ["bakso", "tahu"]
+  },
+  {
+    "id": 11,
+    "joke": "Kenapa tukang sate nggak pernah galau? Karena hidupnya selalu di tusuk-tusuk tapi tetap semangat.",
+    "category": "makanan",
+    "keywords": ["sate", "tusuk"]
+  },
+  {
+    "id": 12,
+    "joke": "Guru: 'Siapa yang bisa bikin kalimat pakai kata kucing?' Murid: 'Saya mau beli es krim, tapi taku-cing dimarahin mama.'",
+    "category": "sekolah",
+    "keywords": ["guru", "murid", "kucing", "kalimat"]
+  },
+  {
+    "id": 13,
+    "joke": "Kenapa buku matematika selalu sedih? Karena penuh dengan masalah.",
+    "category": "sekolah",
+    "keywords": ["matematika", "buku", "masalah"]
+  },
+  {
+    "id": 14,
+    "joke": "Apa bahasa Inggrisnya 'nenek naik ojek'? Grandmother on the jek.",
+    "category": "sekolah",
+    "keywords": ["bahasa inggris", "nenek", "ojek"]
+  },
+  {
+    "id": 15,
+    "joke": "Murid: 'Pak, kenapa matahari terbit dari timur?' Guru: 'Karena kalau dari barat nanti dikira sunset.'",
+    "category": "sekolah",
+    "keywords": ["guru", "murid", "matahari"]
+  },
+  {
+    "id": 16,
+    "joke": "Kenapa pensil nggak bisa tidur? Karena kalau tidur nanti tumpul.",
+    "category": "sekolah",
+    "keywords": ["pensil", "tidur"]
+  },
+  {
+    "id": 17,
+    "joke": "Kenapa rapor selalu tebal? Karena banyak yang perlu diperbaiki.",
+    "category": "sekolah",
+    "keywords": ["rapor", "nilai"]
+  },
+  {
+    "id": 18,
+    "joke": "Anak: 'Pak, aku mau jadi dokter.' Papa: 'Boleh, tapi jangan dokter gigi, nanti hidup kamu cuma ngurusin bolong.'",
+    "category": "keluarga",
+    "keywords": ["dokter", "anak", "papa"]
+  },
+  {
+    "id": 19,
+    "joke": "Kenapa papa selalu bawa payung? Bukan karena hujan, tapi biar kelihatan bertanggung jawab.",
+    "category": "keluarga",
+    "keywords": ["papa", "payung", "tanggung jawab"]
+  },
+  {
+    "id": 20,
+    "joke": "Mama: 'Papa udah makan belum?' Papa: 'Udah, makan hati.'",
+    "category": "keluarga",
+    "keywords": ["mama", "papa", "makan"]
+  },
+  {
+    "id": 21,
+    "joke": "Kenapa adik nangis terus? Karena kakaknya bilang 'kamu tuh kayak WiFi, nggak ada sinyal.'",
+    "category": "keluarga",
+    "keywords": ["adik", "kakak", "wifi"]
+  },
+  {
+    "id": 22,
+    "joke": "Papa: 'Nak, hidup itu kayak naik sepeda.' Anak: 'Kenapa, Pa?' Papa: 'Kalau nggak dikayuh ya jatuh.'",
+    "category": "keluarga",
+    "keywords": ["papa", "anak", "sepeda", "nasihat"]
+  },
+  {
+    "id": 23,
+    "joke": "Kenapa pegawai kantoran suka kopi? Karena tanpa kopi, meeting cuma jadi sleeping.",
+    "category": "kantor",
+    "keywords": ["kopi", "meeting", "kantoran"]
+  },
+  {
+    "id": 24,
+    "joke": "Apa bedanya bos sama WiFi? WiFi kalau lemot bisa di-restart, bos kalau lemot ya sabar aja.",
+    "category": "kantor",
+    "keywords": ["bos", "wifi", "lemot"]
+  },
+  {
+    "id": 25,
+    "joke": "Kenapa printer kantor selalu rusak? Karena kerjanya di-tekan terus.",
+    "category": "kantor",
+    "keywords": ["printer", "rusak", "tekan"]
+  },
+  {
+    "id": 26,
+    "joke": "Karyawan: 'Pak, saya mau resign.' Bos: 'Kenapa?' Karyawan: 'Soalnya gaji saya sudah resign duluan.'",
+    "category": "kantor",
+    "keywords": ["resign", "gaji", "bos"]
+  },
+  {
+    "id": 27,
+    "joke": "Kenapa orang kantor suka pakai dasi? Biar kalau ngantuk bisa dijadiin selimut mini.",
+    "category": "kantor",
+    "keywords": ["dasi", "ngantuk"]
+  },
+  {
+    "id": 28,
+    "joke": "Kenapa AC kantor selalu dingin banget? Karena manajemen mau karyawan tetap cool.",
+    "category": "kantor",
+    "keywords": ["ac", "dingin", "cool"]
+  },
+  {
+    "id": 29,
+    "joke": "Kenapa bola basket nggak pernah ke salon? Karena udah bulat sempurna.",
+    "category": "olahraga",
+    "keywords": ["basket", "bola", "salon"]
+  },
+  {
+    "id": 30,
+    "joke": "Apa olahraga favorit tukang listrik? Volt-i.",
+    "category": "olahraga",
+    "keywords": ["listrik", "voli"]
+  },
+  {
+    "id": 31,
+    "joke": "Kenapa pemain bulu tangkis nggak pernah botak? Karena selalu pakai net.",
+    "category": "olahraga",
+    "keywords": ["bulu tangkis", "net", "botak"]
+  },
+  {
+    "id": 32,
+    "joke": "Kenapa wasit selalu bawa kartu? Karena nggak bisa bayar pakai QRIS.",
+    "category": "olahraga",
+    "keywords": ["wasit", "kartu", "qris"]
+  },
+  {
+    "id": 33,
+    "joke": "Apa bedanya lari maraton sama lari dari tanggung jawab? Kalau maraton ada finish line.",
+    "category": "olahraga",
+    "keywords": ["lari", "maraton", "tanggung jawab"]
+  },
+  {
+    "id": 34,
+    "joke": "Kenapa kiper selalu sendiri? Karena kerjaannya jaga gawang, bukan jaga hati.",
+    "category": "olahraga",
+    "keywords": ["kiper", "gawang", "hati"]
+  },
+  {
+    "id": 35,
+    "joke": "Apa buah yang paling ditakuti? Duku, karena bikin orang takut ke-duku-nan.",
+    "category": "makanan",
+    "keywords": ["buah", "duku", "kedukaan"]
+  },
+  {
+    "id": 36,
+    "joke": "Hewan apa yang bisa bikin kita kaya? Uang-utan.",
+    "category": "hewan",
+    "keywords": ["uang", "orangutan"]
+  },
+  {
+    "id": 37,
+    "joke": "Kenapa anak IT nggak pernah putus cinta? Karena selalu bisa reconnect.",
+    "category": "kantor",
+    "keywords": ["it", "putus", "reconnect"]
+  },
+  {
+    "id": 38,
+    "joke": "Papa: 'Nak, tau nggak kenapa papa sayang sama kamu?' Anak: 'Kenapa Pa?' Papa: 'Karena kamu gratis, nggak perlu bayar langganan.'",
+    "category": "keluarga",
+    "keywords": ["papa", "anak", "sayang", "langganan"]
+  },
+  {
+    "id": 39,
+    "joke": "Kenapa tukang parkir jago matematika? Karena tiap hari ngitung mundur.",
+    "category": "kantor",
+    "keywords": ["tukang parkir", "matematika", "mundur"]
+  },
+  {
+    "id": 40,
+    "joke": "Kenapa sepatu bola selalu bau? Karena kerjanya nendang-nendang terus, nggak sempat cuci.",
+    "category": "olahraga",
+    "keywords": ["sepatu", "bola", "bau"]
+  }
+]

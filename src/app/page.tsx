@@ -56,7 +56,7 @@ export default function Home() {
                 />
               </p>
               {jokes.map((j, i) => (
-                <JokeCard key={j.id} jokeId={j.id} joke={j.joke} index={i} />
+                <JokeCard key={j.id} jokeId={j.id} joke={j.joke} category={j.category} index={i} />
               ))}
             </>
           )}

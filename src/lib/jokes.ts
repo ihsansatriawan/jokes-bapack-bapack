@@ -34,6 +34,7 @@ function seededShuffle<T>(array: T[], seed: number): T[] {
 export interface JokeResult {
   id: number;
   joke: string;
+  category: string;
 }
 
 export function getJokes(
@@ -53,5 +54,5 @@ export function getJokes(
   }
 
   const shuffled = seededShuffle(filtered, seed);
-  return shuffled.slice(0, count).map((j) => ({ id: j.id, joke: j.joke }));
+  return shuffled.slice(0, count).map((j) => ({ id: j.id, joke: j.joke, category: j.category }));
 }

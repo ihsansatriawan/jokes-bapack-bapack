@@ -62,7 +62,7 @@ No new files created.
 
 ## Re-generate Behavior
 
-When user clicks "Generate" and a previously-voted joke reappears in the new batch, the vote state persists from sessionStorage. The `useEffect` reads sessionStorage using the joke ID, so the component correctly shows the locked/highlighted state even after re-render. The `useEffect` dependency array includes `jokeId` to handle cases where React reuses the component instance with a different joke.
+When user clicks "Generate" and a previously-voted joke reappears in the new batch, the vote state persists from sessionStorage. The `useEffect` reads sessionStorage using the joke ID, so the component correctly shows the locked/highlighted state even after re-render. The `useEffect` dependency array is `[jokeId]` to handle cases where React reuses the component instance with a different joke. No other deps needed — `category` and `joke` are only used in the click handler, not the effect body.
 
 ## UI States
 
